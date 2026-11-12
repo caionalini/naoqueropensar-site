@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="facebook-domain-verification" content="k3i73e4mxizclaj80ioithm91b8m6h" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Não Quero Pensar — Cadastro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="icon" href="simbolo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icone-180.png">
+<meta name="theme-color" content="#FFF7EC">
+<style>
+  :root {
+    /* Tokens do manual da marca (Não Quero Pensar) */
+    --fundo: #FFF7EC;        /* creme */
+    --cartao: #FFFFFF;       /* branco */
+    --tinta: #13294B;        /* marinho */
+    --suave: #3E4E6B;        /* marinho-suave */
+    --linha: #E8D9C4;        /* linha */
+    --laranja: #FF5A1F;      /* destaque, nunca texto pequeno */
+    --laranja-texto: #C2410C;
+    --pessego: #FFE7CC;
+    --raio: 20px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--fundo);
+    color: var(--tinta);
+    font: 400 16px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 560px; margin: 0 auto; padding: 32px 20px 56px; }
+
+  .marca { margin-bottom: 28px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+  .marca img { height: 64px; width: auto; display: block; }
+  .assinatura { font: 800 15px/1.2 Rubik, Inter, sans-serif; color: var(--laranja-texto); }
+  h1 { font: 800 34px/1.08 Rubik, Inter, sans-serif; margin: 0 0 14px; letter-spacing: -.02em; }
+  .lead { color: var(--suave); font-size: 17px; margin: 0 0 22px; }
+
+  .exemplo {
+    background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio);
+    padding: 14px 16px; margin: 0 0 32px; font-size: 15px;
+  }
+  .bolha { display: inline-block; padding: 8px 12px; border-radius: 12px; margin: 4px 0; max-width: 92%; }
+  .eu { background: var(--pessego); margin-left: auto; display: block; width: fit-content; }
+  .bot { background: var(--fundo); }
+
+  form { display: grid; gap: 22px; }
+  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 14px; }
+  legend { font: 800 19px/1.3 Rubik, Inter, sans-serif; margin-bottom: 4px; padding: 0; }
+  .secao { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); padding: 20px 18px; }
+
+  label.campo { display: grid; gap: 6px; font-weight: 500; font-size: 15px; }
+  .dica { font-weight: 400; color: var(--suave); font-size: 13px; }
+  input[type=text], input[type=email], input[type=tel] {
+    font: inherit; padding: 12px 14px; border: 1px solid var(--linha); border-radius: 10px;
+    background: #fff; color: var(--tinta); width: 100%;
+  }
+  input:focus-visible, .chip:focus-within, button:focus-visible { outline: 3px solid var(--laranja); outline-offset: 2px; }
+  .erro { color: var(--laranja-texto); font-size: 13px; min-height: 0; }
+  .erro:empty { display: none; }
+
+  .grupo { display: grid; gap: 8px; }
+  .grupo-titulo { font-weight: 500; font-size: 15px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { position: relative; }
+  .chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .chip span {
+    display: inline-block; padding: 8px 13px; border: 1px solid var(--linha); border-radius: 999px;
+    background: #fff; font-size: 14px; user-select: none;
+  }
+  .chip input:checked + span { background: var(--tinta); border-color: var(--tinta); color: #fff; }
+  .evita .chip input:checked + span { background: var(--laranja); border-color: var(--laranja); color: var(--tinta); }
+
+  .aceite { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; font-size: 14px; color: var(--suave); }
+  .aceite input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--tinta); }
+  a { color: var(--tinta); }
+
+  button {
+    font: 600 17px/1 Inter, system-ui, sans-serif; color: var(--tinta); background: var(--laranja);
+    border: 0; border-radius: 12px; padding: 17px 20px; cursor: pointer; width: 100%;
+  }
+  button:hover { filter: brightness(.95); }
+
+  .pronto { display: none; text-align: center; padding: 40px 8px; }
+  .pronto h2 { font: 800 28px/1.15 Rubik, Inter, sans-serif; margin: 12px 0; }
+  .pronto p { color: var(--suave); }
+  .check { width: 64px; height: 64px; border-radius: 50%; background: var(--pessego); display: grid; place-items: center; margin: 0 auto; }
+
+  .previa { font-size: 12px; color: var(--suave); text-align: center; margin-top: 14px; }
+  footer { max-width: 560px; margin: 0 auto; padding: 0 20px 40px; font-size: 12px; color: var(--suave); }
+  footer p { margin: 6px 0; }
+</style>
+<style>.armadilha{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}button[disabled]{opacity:.6}</style>
+</head>
+<body>
+<main>
+  <div class="marca"><img src="logo.svg" alt="Não Quero Pensar"><span class="assinatura">Pensar pra quê?</span></div>
+
+  <div id="formulario">
+    <h1>Diga em que você não quer pensar. A gente resolve.</h1>
+    <p class="lead">No WhatsApp, por texto ou áudio. Você diz o assunto e recebe uma escolha pronta, feita pro seu gosto e pro seu bairro.</p>
+
+    <div class="exemplo" aria-hidden="true">
+      <span class="bolha eu">não quero pensar no jantar</span>
+      <span class="bolha bot"><b>Deixa comigo: pede no Lamen do Bairro.</b> Japonês a 1,2 km, nota 4,7, entregando agora. Não curtiu? É só pedir outra.</span>
+    </div>
+
+    <form id="cadastro" novalidate>
+      <div class="secao">
+        <fieldset>
+          <legend>Seus dados</legend>
+          <label class="campo">Nome
+            <input type="text" name="nome" autocomplete="given-name" required>
+            <span class="erro" data-erro="nome"></span>
+          </label>
+          <label class="campo">E-mail
+            <input type="email" name="email" autocomplete="email" required>
+            <span class="erro" data-erro="email"></span>
+          </label>
+          <label class="campo">WhatsApp
+            <span class="dica">Com DDD. É por aqui que você vai conversar com a gente.</span>
+            <input type="tel" name="whatsapp" inputmode="numeric" autocomplete="tel-national" placeholder="(11) 91234-5678" required>
+            <span class="erro" data-erro="whatsapp"></span>
+          </label>
+          <label class="campo">CEP
+            <span class="dica">Usamos pra indicar lugares perto de você.</span>
+            <input type="text" name="cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" required>
+            <span class="erro" data-erro="cep"></span>
+          </label>
+          <label class="armadilha" aria-hidden="true">Site<input type="text" name="site" tabindex="-1" autocomplete="off"></label>
+          <label class="campo">Código de convite
+            <span class="dica">O beta é só por convite.</span>
+            <input type="text" name="convite" autocomplete="off" required>
+            <span class="erro" data-erro="convite"></span>
+          </label>
+        </fieldset>
+      </div>
+
+      <div class="secao">
+        <fieldset>
+          <legend>O que você assiste</legend>
+          <div class="grupo">
+            <div class="grupo-titulo">Streamings que você assina</div>
+            <div class="chips" data-grupo="streamings"></div>
+            <span class="erro" data-erro="streamings"></span>
+          </div>
+          <div class="grupo">
+            <div class="grupo-titulo">Filmes que você curte</div>
+            <div class="chips" data-grupo="filmes"></div>
+          </div>
+          <div class="grupo">
+            <div class="grupo-titulo">Séries que você curte</div>
+            <div class="chips" data-grupo="series"></div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="secao">
+        <fieldset>
+          <legend>O que você come</legend>
+          <div class="grupo">
+            <div class="grupo-titulo">Comidas que você gosta</div>
+            <div class="chips" data-grupo="comidas"></div>
+          </div>
+          <div class="grupo evita">
+            <div class="grupo-titulo">O que você não come</div>
+            <div class="chips" data-grupo="evita"></div>
+          </div>
+          <label class="campo">Mais alguma restrição?
+            <span class="dica">Opcional. Ex.: castanhas, porco.</span>
+            <input type="text" name="evita_outros">
+          </label>
+        </fieldset>
+      </div>
+
+      <div class="secao">
+        <fieldset>
+          <legend>Combinado</legend>
+          <label class="aceite">
+            <input type="checkbox" name="consentimento" required>
+            <span>Aceito receber mensagens do Não Quero Pensar no WhatsApp. Posso parar a qualquer momento respondendo SAIR.</span>
+          </label>
+          <label class="aceite">
+            <input type="checkbox" name="termos" required>
+            <span>Li e aceito os <a href="termos.html" target="_blank">Termos de uso</a> e a <a href="privacidade.html" target="_blank">Política de privacidade</a>.</span>
+          </label>
+          <span class="erro" data-erro="aceites"></span><span class="erro" data-erro="consentimento"></span><span class="erro" data-erro="termos"></span>
+        </fieldset>
+      </div>
+
+      <span class="erro" data-erro="geral" role="alert"></span>
+      <button type="submit">Começar</button>
+    </form>
+  </div>
+
+  <div class="pronto" id="pronto" role="status" aria-live="polite">
+    <div class="check" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#13294B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h2>Pronto, <span id="pronto-nome"></span>!</h2>
+    <p>Em instantes você recebe nossa mensagem no WhatsApp. A partir daí, é só dizer em que você não quer pensar.</p>
+    <p id="pronto-convite" hidden>Você tem 3 convites pra chamar quem também não quer pensar. Seu código: <strong id="codigo"></strong></p>
+  </div>
+</main>
+
+<footer>
+  <p>Indicações de lugares usam dados do Google Maps. Ao usar o serviço, você concorda também com os Termos de Serviço do Google.</p>
+  <p><a href="privacidade.html">Privacidade</a> · <a href="termos.html">Termos</a> · <a href="mailto:contato@naoqueropensar.com">contato@naoqueropensar.com</a></p>
+  <p>Não Quero Pensar · Caio Sousa · CNPJ 45.130.947/0001-55 · São Paulo/SP</p>
+</footer>
+
+<script>
+  const OPCOES = {
+    streamings: ["Netflix", "Prime Video", "Disney+", "HBO Max", "Globoplay", "Apple TV+", "Paramount+"],
+    filmes: ["Ação", "Comédia", "Drama", "Suspense", "Terror", "Romance", "Ficção científica", "Animação", "Documentário"],
+    series: ["Drama", "Comédia", "Policial", "Suspense", "Ficção científica", "Fantasia", "Reality", "Documentário", "Novela"],
+    comidas: ["Japonesa", "Italiana", "Pizza", "Hambúrguer", "Brasileira", "Árabe", "Mexicana", "Chinesa", "Coreana", "Peruana", "Vegetariana", "Saudável", "Doces"],
+    evita: ["Carne", "Frutos do mar", "Glúten", "Lactose", "Amendoim", "Pimenta"]
+  };
+
+  for (const [grupo, itens] of Object.entries(OPCOES)) {
+    const alvo = document.querySelector(`[data-grupo="${grupo}"]`);
+    for (const item of itens) {
+      const rotulo = document.createElement("label");
+      rotulo.className = "chip";
+      rotulo.innerHTML = `<input type="checkbox" name="${grupo}" value="${item}"><span>${item}</span>`;
+      alvo.appendChild(rotulo);
+    }
+  }
+
+  const form = document.getElementById("cadastro");
+  const so = v => v.replace(/\D/g, "");
+
+  form.whatsapp.addEventListener("input", e => {
+    const d = so(e.target.value).slice(0, 11);
+    let s = d;
+    if (d.length > 2) s = `(${d.slice(0, 2)}) ${d.slice(2)}`;
+    if (d.length > 7) s = `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+    e.target.value = s;
+  });
+  form.cep.addEventListener("input", e => {
+    const d = so(e.target.value).slice(0, 8);
+    e.target.value = d.length > 5 ? `${d.slice(0, 5)}-${d.slice(5)}` : d;
+  });
+
+  function erro(campo, msg) { document.querySelector(`[data-erro="${campo}"]`).textContent = msg; }
+
+  // Endereço do cadastro (ambiente de teste até o lançamento)
+  const API = "https://xvkxxdaqvkbctfznatoo.supabase.co/functions/v1/cadastro";
+  const marcados = g => [...form.querySelectorAll(`[name="${g}"]:checked`)].map(i => i.value.toLowerCase());
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    document.querySelectorAll(".erro").forEach(el => el.textContent = "");
+    let ok = true;
+    if (!form.nome.value.trim()) { erro("nome", "Diga como podemos te chamar."); ok = false; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.value.trim())) { erro("email", "Confira o e-mail."); ok = false; }
+    if (so(form.whatsapp.value).length !== 11) { erro("whatsapp", "Use DDD + número de celular, 11 dígitos."); ok = false; }
+    if (so(form.cep.value).length !== 8) { erro("cep", "O CEP tem 8 dígitos."); ok = false; }
+    if (!form.convite.value.trim()) { erro("convite", "Você precisa de um convite pra entrar no beta."); ok = false; }
+    if (!form.querySelectorAll('[name="streamings"]:checked').length) { erro("streamings", "Marque pelo menos um, pra gente indicar o que você consegue assistir."); ok = false; }
+    if (!form.consentimento.checked || !form.termos.checked) { erro("aceites", "Pra começar, marque as duas opções."); ok = false; }
+    if (!ok) { document.querySelector(".erro:not(:empty)")?.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+
+    const outros = form.evita_outros.value.split(/[,;]/).map(x => x.trim().toLowerCase()).filter(Boolean);
+    const dados = {
+      nome: form.nome.value.trim(), email: form.email.value.trim(), whatsapp: so(form.whatsapp.value), cep: so(form.cep.value),
+      convite: form.convite.value.trim(), site: form.site.value,
+      streamings: [...form.querySelectorAll('[name="streamings"]:checked')].map(i => i.value),
+      generos_filmes: marcados("filmes"), generos_series: marcados("series"),
+      comidas_gosta: marcados("comidas"), comidas_evita: [...marcados("evita"), ...outros],
+      consentimento: form.consentimento.checked, termos: form.termos.checked,
+    };
+    const botao = form.querySelector('button[type="submit"]');
+    botao.disabled = true; botao.textContent = "Enviando…";
+    try {
+      const r = await fetch(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(dados) });
+      const resp = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        const erros = resp.erros ?? { geral: "Não deu pra concluir agora. Tenta de novo?" };
+        for (const [campo, msg] of Object.entries(erros)) erro(document.querySelector(`[data-erro="${campo}"]`) ? campo : "geral", msg);
+        document.querySelector(".erro:not(:empty)")?.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+      document.getElementById("pronto-nome").textContent = dados.nome.split(" ")[0];
+      if (resp.codigo_convite) { document.getElementById("codigo").textContent = resp.codigo_convite; document.getElementById("pronto-convite").hidden = false; }
+      document.getElementById("formulario").style.display = "none";
+      document.getElementById("pronto").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      erro("geral", "Sem conexão com o servidor. Confere sua internet e tenta de novo.");
+    } finally {
+      botao.disabled = false; botao.textContent = "Começar";
+    }
+  });
+</script>
+</body>
+</html>
