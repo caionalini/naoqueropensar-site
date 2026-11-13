@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="icon" href="favicon-32.png" sizes="32x32"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Como funciona · Não Quero Pensar</title>
+<meta name="description" content="Diga do que você não quer pensar e receba uma escolha pronta no WhatsApp: comida, filme, série ou programa.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet"><style>
+:root{--creme:#FFF7EC;--pessego:#FFE7CC;--tinta:#13294B;--laranja:#FF5A1F;--tomate:#C2410C;--suave:#3E4E6B}
+*{box-sizing:border-box}body{margin:0;background:var(--creme);color:var(--tinta);font:16px/1.6 Inter,system-ui,sans-serif}
+main{max-width:720px;margin:0 auto;padding:32px 20px 64px}a{color:var(--tomate)}
+h1{font-family:Rubik,Inter,sans-serif;font-weight:800;font-size:2.2rem;line-height:1.1;letter-spacing:-.02em;margin:.4em 0 .2em}
+h2{font-family:Rubik,Inter,sans-serif;font-weight:800;font-size:1.35rem;margin:2.2em 0 .6em}
+.lead{font-size:1.1rem;color:var(--suave);margin:0 0 1.5em}
+.passos{display:grid;gap:12px;padding:0;margin:0;list-style:none;counter-reset:p}
+.passos li{background:#fff;border-radius:14px;padding:14px 16px 14px 56px;position:relative;counter-increment:p}
+.passos li::before{content:counter(p);position:absolute;left:14px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--laranja);color:var(--tinta);font:800 1rem/30px Rubik,sans-serif;text-align:center}
+.conversa{background:#E9E2D6;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:8px;margin:12px 0 4px}
+.msg{max-width:85%;padding:9px 12px;border-radius:12px;font-size:.95rem;line-height:1.45;white-space:pre-line;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+.eu{align-self:flex-end;background:#D9FDD3;border-top-right-radius:4px}
+.bot{align-self:flex-start;background:#fff;border-top-left-radius:4px}
+.botao{display:block;margin-top:8px;padding-top:8px;border-top:1px solid #eee;text-align:center;color:#0B7A75;font-weight:600}
+.legenda{font-size:.85rem;color:var(--suave);margin:0 0 8px}
+.comandos{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden}
+.comandos td{padding:10px 14px;border-bottom:1px solid #F0E6D8;vertical-align:top}.comandos tr:last-child td{border:0}
+.comandos td:first-child{font-weight:600;white-space:nowrap}
+.cta{display:inline-block;margin-top:24px;background:var(--laranja);color:var(--tinta);text-decoration:none;font-weight:600;padding:14px 22px;border-radius:999px}
+footer{margin-top:48px;font-size:.85rem;color:var(--suave)}
+</style></head><body><main>
+<a href="index.html"><img src="logo.svg" alt="Não Quero Pensar" style="height:48px"></a>
+<h1>Como funciona</h1>
+<p class="lead">Você diz do que não quer pensar. Eu escolho e mando uma opção pronta no WhatsApp. Pensar pra quê?</p>
+
+<ol class="passos">
+  <li><b>Escreva ou mande um áudio</b> começando com "não quero pensar…". Pode ser do jeito que você fala.</li>
+  <li><b>Receba uma escolha só</b>, já filtrada pelo que você contou no cadastro: seu bairro, seus streamings, o que você não come.</li>
+  <li><b>Não curtiu?</b> Toque em "Quero outra" e vem outra opção, diferente da anterior.</li>
+</ol>
+
+<h2>Pedir para comer</h2>
+<p class="legenda">Um lugar perto do seu CEP, aberto agora e que faz entrega.</p>
+<div class="conversa">
+  <div class="msg eu">não quero pensar no jantar</div>
+  <div class="msg bot">🍽️ Pede no <b>(restaurante escolhido)</b>.
+Restaurante italiano · a 0,5 km · ⭐ 4,9 · faz entrega
+Massas bem avaliadas, pertinho, para um jantar sem complicação.
+Pede pelo app de delivery que você já usa.<span class="botao">Quero outra</span></div>
+</div>
+
+<h2>Filme e série</h2>
+<p class="legenda">Só no que você assina. Pode pedir gênero ou algo curto.</p>
+<div class="conversa">
+  <div class="msg eu">quero um filme de comédia curto</div>
+  <div class="msg bot">🎬 Assiste <b>(filme escolhido)</b>.
+No Netflix · 1h32 · comédia
+Uma frase sobre por que vale a pena, sem spoiler.<span class="botao">Quero outra</span></div>
+</div>
+
+<h2>Fazer</h2>
+<p class="legenda">Um programa para hoje ou para o fim de semana: evento, show ou um lugar para ir.</p>
+<div class="conversa">
+  <div class="msg eu">não quero pensar no que fazer sábado à noite</div>
+  <div class="msg bot">🎟️ Vai em <b>(programa escolhido)</b>.
+Sábado, 20h · a 2 km de você · entrada gratuita
+Com o link da fonte para conferir os detalhes.<span class="botao">Quero outra</span></div>
+</div>
+
+<h2>Não sabe nem do que não quer pensar?</h2>
+<div class="conversa">
+  <div class="msg eu">não quero pensar</div>
+  <div class="msg bot">Beleza, eu escolho. Em que você não quer pensar?<span class="botao">Pedir para comer · Filme · Série · Fazer</span></div>
+</div>
+
+<h2>Comandos úteis</h2>
+<table class="comandos">
+  <tr><td>Quero outra</td><td>Troca a última indicação por outra.</td></tr>
+  <tr><td>Manda pra galera</td><td>Toda indicação vem com um link para mandar para os amigos.</td></tr>
+  <tr><td>ajuda</td><td>Mostra exemplos do que dá para pedir.</td></tr>
+  <tr><td>SAIR</td><td>Para de receber mensagens. Escreva VOLTAR para voltar.</td></tr>
+  <tr><td>apagar meus dados</td><td>Apaga seu cadastro e seu histórico (em até 15 dias).</td></tr>
+</table>
+
+<a class="cta" href="index.html">Quero entrar no beta</a>
+
+<footer>
+  <p><a href="index.html">Início</a> · <a href="privacidade.html">Privacidade</a> · <a href="termos.html">Termos</a> · <a href="mailto:contato@naoqueropensar.com">contato@naoqueropensar.com</a></p>
+  <p>Não Quero Pensar · Caio Sousa · CNPJ 45.130.947/0001-55 · São Paulo/SP</p>
+</footer>
+</main></body></html>
