@@ -204,7 +204,7 @@
     </div>
     <h2>Pronto, <span id="pronto-nome"></span>!</h2>
     <p>Em instantes você recebe nossa mensagem no WhatsApp. A partir daí, é só dizer em que você não quer pensar.</p>
-    <p id="pronto-convite" hidden>Você tem 3 convites pra chamar quem também não quer pensar. Seu código: <strong id="codigo"></strong></p>
+    <p id="pronto-convite" hidden>Você tem 3 convites pra chamar quem também não quer pensar. Seu código: <strong id="codigo"></strong><br><a id="compartilhar" href="#" target="_blank" rel="noopener">Mandar o convite no WhatsApp</a></p>
   </div>
 </main>
 
@@ -288,7 +288,12 @@
         return;
       }
       document.getElementById("pronto-nome").textContent = dados.nome.split(" ")[0];
-      if (resp.codigo_convite) { document.getElementById("codigo").textContent = resp.codigo_convite; document.getElementById("pronto-convite").hidden = false; }
+      if (resp.codigo_convite) {
+        document.getElementById("codigo").textContent = resp.codigo_convite;
+        const msg = `Entrei no beta do Não Quero Pensar: você diz do que não quer pensar e ele escolhe por você no WhatsApp. Meu convite: https://naoqueropensar.com.br/?convite=${encodeURIComponent(resp.codigo_convite)}`;
+        document.getElementById("compartilhar").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+        document.getElementById("pronto-convite").hidden = false;
+      }
       document.getElementById("formulario").style.display = "none";
       document.getElementById("pronto").style.display = "block";
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -298,6 +303,9 @@
       botao.disabled = false; botao.textContent = "Começar";
     }
   });
+  // Link de convite já preenche o código: naoqueropensar.com.br/?convite=CODIGO
+  const codigoUrl = new URLSearchParams(location.search).get("convite");
+  if (codigoUrl && !form.convite.value) form.convite.value = codigoUrl.trim().slice(0, 40);
 </script>
 </body>
 </html>
