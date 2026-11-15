@@ -11,18 +11,18 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="icon" href="simbolo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icone-180.png">
-<meta name="theme-color" content="#FFF7EC">
+<meta name="theme-color" content="#F7F1E8">
 <style>
   :root {
     /* Tokens do manual da marca (Não Quero Pensar) */
-    --fundo: #FFF7EC;        /* creme */
+    --fundo: #F7F1E8;        /* papel */
     --cartao: #FFFFFF;       /* branco */
-    --tinta: #13294B;        /* marinho */
-    --suave: #3E4E6B;        /* marinho-suave */
-    --linha: #E8D9C4;        /* linha */
-    --laranja: #FF5A1F;      /* destaque, nunca texto pequeno */
-    --laranja-texto: #C2410C;
-    --pessego: #FFE7CC;
+    --tinta: #3A2E28;        /* cacau */
+    --suave: #665850;        /* cacau suave */
+    --linha: #E6D8C6;        /* linha */
+    --laranja: #D2603A;      /* terracota: risco e destaques grandes, nunca texto pequeno */
+    --laranja-texto: #A8472A;
+    --pessego: #F1E2D0;
     --raio: 20px;
   }
   * { box-sizing: border-box; }
@@ -37,7 +37,6 @@
 
   .marca { margin-bottom: 28px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
   .marca img { height: 64px; width: auto; display: block; }
-  .assinatura { font: 800 15px/1.2 Rubik, Inter, sans-serif; color: var(--laranja-texto); }
   h1 { font: 800 34px/1.08 Rubik, Inter, sans-serif; margin: 0 0 14px; letter-spacing: -.02em; }
   .lead { color: var(--suave); font-size: 17px; margin: 0 0 22px; }
 
@@ -74,14 +73,14 @@
     background: #fff; font-size: 14px; user-select: none;
   }
   .chip input:checked + span { background: var(--tinta); border-color: var(--tinta); color: #fff; }
-  .evita .chip input:checked + span { background: var(--laranja); border-color: var(--laranja); color: var(--tinta); }
+  .evita .chip input:checked + span { background:var(--laranja-texto);border-color:var(--laranja-texto);color:#fff; }
 
   .aceite { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; font-size: 14px; color: var(--suave); }
   .aceite input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--tinta); }
   a { color: var(--tinta); }
 
   button {
-    font: 600 17px/1 Inter, system-ui, sans-serif; color: var(--tinta); background: var(--laranja);
+    font: 600 17px/1 Inter, system-ui, sans-serif; color: #fff; background: var(--laranja-texto);
     border: 0; border-radius: 12px; padding: 17px 20px; cursor: pointer; width: 100%;
   }
   button:hover { filter: brightness(.95); }
@@ -99,11 +98,11 @@
 </head>
 <body>
 <main>
-  <div class="marca"><img src="logo.svg" alt="Não Quero Pensar"><span class="assinatura">Pensar pra quê?</span></div>
+  <div class="marca"><img src="logo.svg" alt="Não Quero Pensar"></div>
 
   <div id="formulario">
-    <h1>Diga em que você não quer pensar. A gente resolve.</h1>
-    <p class="lead">No WhatsApp, por texto ou áudio. Você diz o assunto e recebe uma escolha pronta, feita pro seu gosto e pro seu bairro.</p>
+    <h1>Uma coisa a menos pra pensar.</h1>
+    <p class="lead">Seu dia já tem decisões demais. O que comer, o que assistir e o que fazer, deixa com a gente: você pede no WhatsApp, por texto ou áudio, e recebe uma escolha pronta, feita pro seu gosto e pro seu bairro.</p>
 
     <div class="exemplo" aria-hidden="true">
       <span class="bolha eu">não quero pensar no jantar</span>
@@ -200,7 +199,7 @@
 
   <div class="pronto" id="pronto" role="status" aria-live="polite">
     <div class="check" aria-hidden="true">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#13294B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3A2E28" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
     </div>
     <h2>Pronto, <span id="pronto-nome"></span>!</h2>
     <p>Em instantes você recebe nossa mensagem no WhatsApp. A partir daí, é só dizer em que você não quer pensar.</p>
