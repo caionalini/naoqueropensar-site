@@ -96,6 +96,32 @@
   .previa { font-size: 12px; color: var(--suave); text-align: center; margin-top: 14px; }
   footer { max-width: 560px; margin: 0 auto; padding: 0 20px 40px; font-size: 12px; color: var(--suave); }
   footer p { margin: 6px 0; }
+
+  .selo { display: inline-block; font: 600 13px/1 Inter, sans-serif; color: var(--laranja-texto); background: var(--pessego); padding: 8px 12px; border-radius: 999px; margin: 0 0 16px; }
+  h1 { font-size: 40px; }
+  .riscado { position: relative; white-space: nowrap; }
+  .riscado::after { content: ""; position: absolute; left: -4%; right: -4%; top: 52%; height: .13em; background: var(--laranja); border-radius: 99px; transform: rotate(-7deg); }
+  .lead { font-size: 19px; color: var(--tinta); margin-bottom: 24px; }
+  .temas { list-style: none; padding: 0; margin: 0 0 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .temas li { background: var(--cartao); border: 1px solid var(--linha); border-radius: 16px; padding: 14px; display: grid; gap: 3px; }
+  .temas .ic { font-size: 24px; line-height: 1; margin-bottom: 4px; }
+  .temas b { font-size: 15px; }
+  .temas s { color: var(--suave); font-size: 13px; text-decoration-color: var(--laranja); text-decoration-thickness: 2px; }
+  .conversa { background: #EFE6DA; border-radius: var(--raio); overflow: hidden; margin: 0 0 22px; border: 1px solid var(--linha); }
+  .conversa .topo { background: var(--tinta); color: #fff; display: flex; align-items: center; gap: 10px; padding: 10px 14px; }
+  .conversa .topo img { width: 34px; height: 34px; border-radius: 50%; background: var(--fundo); }
+  .conversa .topo span { display: grid; line-height: 1.2; font-size: 15px; }
+  .conversa .topo small { opacity: .75; font-size: 12px; }
+  .msgs { padding: 14px; display: grid; gap: 8px; }
+  .msg { margin: 0; padding: 9px 12px; border-radius: 12px; max-width: 86%; font-size: 15px; box-shadow: 0 1px 0 rgba(58,46,40,.08); }
+  .msg.eu { background: #DCEFD0; justify-self: end; border-top-right-radius: 4px; }
+  .msg.ele { background: #fff; border-top-left-radius: 4px; }
+  .botao-msg { margin: -4px 0 0; background: #fff; color: var(--laranja-texto); font-weight: 600; text-align: center; padding: 9px; border-radius: 12px; max-width: 86%; font-size: 15px; }
+  .passos { margin: 0 0 18px; padding: 0; list-style: none; counter-reset: p; display: grid; gap: 10px; }
+  .passos li { counter-increment: p; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: center; font-size: 15px; }
+  .passos li::before { content: counter(p); width: 28px; height: 28px; border-radius: 50%; background: var(--tinta); color: #fff; display: grid; place-items: center; font: 800 14px/1 Rubik, sans-serif; }
+  .chamada { text-align: center; font-weight: 600; color: var(--laranja-texto); margin: 0 0 18px; }
+  @media (max-width: 380px) { h1 { font-size: 34px; } .temas li { padding: 12px; } }
 </style>
 <style>.armadilha{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}button[disabled]{opacity:.6}</style>
 </head>
@@ -104,13 +130,33 @@
   <div class="marca"><img src="logo.svg" alt="Não Quero Pensar"></div>
 
   <div id="formulario">
-    <h1>Uma coisa a menos pra pensar.</h1>
-    <p class="lead">Seu dia já tem decisões demais. O que comer, o que assistir e o que fazer, deixa com a gente: você pede no WhatsApp, por texto ou áudio, e recebe uma escolha pronta, feita pro seu gosto e pro seu bairro.</p>
+    <p class="selo">Beta só por convite · 30 dias grátis</p>
+    <h1>Uma coisa a menos pra <span class="riscado">pensar</span>.</h1>
+    <p class="lead">Você diz do que não quer pensar. A gente escolhe por você, no WhatsApp.</p>
 
-    <div class="exemplo" aria-hidden="true">
-      <span class="bolha eu">não quero pensar no jantar</span>
-      <span class="bolha bot"><b>Deixa comigo: pede no Lamen do Bairro.</b> Japonês a 1,2 km, nota 4,7, entregando agora. Não curtiu? É só pedir outra.</span>
+    <ul class="temas" aria-label="Do que você pode deixar de pensar">
+      <li><span class="ic" aria-hidden="true">🍽️</span><b>O que pedir</b><s>40 opções no app</s></li>
+      <li><span class="ic" aria-hidden="true">🎬</span><b>Que filme ver</b><s>meia hora rolando</s></li>
+      <li><span class="ic" aria-hidden="true">📺</span><b>Que série ver</b><s>"vê aí e me fala"</s></li>
+      <li><span class="ic" aria-hidden="true">🎟️</span><b>O que fazer</b><s>"sei lá, você escolhe"</s></li>
+    </ul>
+
+    <div class="conversa" aria-label="Exemplo de conversa">
+      <div class="topo"><img src="simbolo.svg" alt=""><span><b>Não Quero Pensar</b><small>WhatsApp</small></span></div>
+      <div class="msgs">
+        <p class="msg eu">não quero pensar no jantar 🙃</p>
+        <p class="msg ele"><b>Pede no Lamen do Bairro.</b><br>Japonês a 1,2 km · ⭐ 4,7 · entregando agora. Elogiado nas redes do bairro.</p>
+        <p class="botao-msg">Quero outra</p>
+      </div>
     </div>
+
+    <ol class="passos">
+      <li><span><b>Manda</b> "não quero pensar em…", por texto ou áudio.</span></li>
+      <li><span><b>Recebe uma escolha só</b>, do seu gosto e perto de você.</span></li>
+      <li><span><b>Não curtiu?</b> Toca em "Quero outra".</span></li>
+    </ol>
+
+    <p class="chamada">Cadastro em 2 minutos ↓</p>
 
     <form id="cadastro" novalidate>
       <div class="secao">
