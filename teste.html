@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testar o Não Quero Pensar</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --fundo:#F7F1E8; --eu:#F1E2D0; --bot:#fff; --tinta:#3A2E28; --verde:#3A2E28; --suave:#665850; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.45 Inter, system-ui, sans-serif; color:var(--tinta); background:var(--fundo); height:100dvh; display:flex; flex-direction:column; }
+  header { background:var(--verde); color:#fff; padding:12px 16px; display:flex; align-items:center; gap:10px; }
+  header b { flex:1; } header button { background:none; border:1px solid #fff8; color:#fff; border-radius:16px; padding:4px 10px; font:inherit; font-size:13px; }
+  #conversa { flex:1; overflow-y:auto; padding:12px; display:flex; flex-direction:column; gap:6px; }
+  .msg { max-width:85%; padding:8px 10px; border-radius:8px; white-space:pre-wrap; word-wrap:break-word; box-shadow:0 1px .5px #0002; }
+  .eu { align-self:flex-end; background:var(--eu); } .bot { align-self:flex-start; background:var(--bot); }
+  .msg a { color:#C2410C; word-break:break-all; }
+  .botoes { display:flex; flex-direction:column; gap:4px; margin-top:8px; }
+  .botoes button { background:#fff; border:0; border-top:1px solid #E8D9C4; color:#C2410C; padding:8px; font:inherit; font-weight:600; }
+  .info { align-self:center; background:#FFF3C4; color:#54656F; font-size:12.5px; padding:4px 10px; border-radius:6px; text-align:center; }
+  form#envio { display:flex; gap:8px; padding:8px; background:#F0F2F5; }
+  form#envio input { flex:1; border:0; border-radius:20px; padding:10px 14px; font:inherit; }
+  form#envio button { border:0; background:#A8472A; color:#fff; border-radius:50%; width:42px; height:42px; font-size:18px; }
+  #perfil { position:fixed; inset:0; background:#fff; overflow:auto; padding:20px; display:none; }
+  #perfil h2 { margin-top:0; } #perfil label { display:block; margin:12px 0 4px; font-weight:600; }
+  #perfil input { width:100%; padding:10px; border:1px solid #ccc; border-radius:8px; font:inherit; }
+  #perfil .dica { color:var(--suave); font-size:13px; font-weight:400; }
+  #perfil button { margin-top:20px; width:100%; padding:12px; border:0; border-radius:8px; background:var(--verde); color:#fff; font:inherit; font-weight:600; }
+  #erro { color:#B3261E; margin-top:10px; }
+</style>
+</head>
+<body>
+<header><img src="simbolo.svg" alt="" width="32" height="32"><b>Não Quero Pensar · teste</b><button id="trocar">Perfil</button></header>
+<div id="conversa"><div class="info">Ambiente de teste. Nada é enviado pelo WhatsApp de verdade.</div></div>
+<form id="envio"><input id="texto" placeholder="não quero pensar no jantar" autocomplete="off"><button aria-label="Enviar">➤</button></form>
+
+<div id="perfil">
+  <h2>Seu perfil de teste</h2>
+  <p class="dica">Fica só neste ambiente de teste. Dá para criar quantos quiser, para testar bairros e gostos diferentes.</p>
+  <label>Nome <input id="p-nome" value="Caio"></label>
+  <label>CEP <input id="p-cep" inputmode="numeric" placeholder="05422-030"></label>
+  <label>Streamings <span class="dica">separados por vírgula</span><input id="p-stream" value="Netflix, Max"></label>
+  <label>Comidas que gosta <input id="p-gosta" value="japonesa, italiana"></label>
+  <label>O que não come <input id="p-evita" placeholder="ex.: frutos do mar"></label>
+  <label>Gêneros de filme <input id="p-filmes" value="drama, suspense"></label>
+  <button id="criar">Criar perfil e começar</button>
+  <div id="erro"></div>
+</div>
+
+<script>
+  const BASE = "https://mcamztwlgoqwmocxbjgf.supabase.co/functions/v1";
+  const conversa = document.getElementById("conversa");
+  const lista = v => v.split(",").map(x => x.trim()).filter(Boolean);
+  let perfil = null;
+  try { perfil = JSON.parse(localStorage.getItem("nqp_perfil_teste") || "null"); } catch {}
+
+  function bolha(classe, texto) {
+    const d = document.createElement("div");
+    d.className = "msg " + classe;
+    d.innerHTML = texto.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]))
+      .replace(/\*(.+?)\*/g, "<b>$1</b>").replace(/(https?:\/\/\S+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+    conversa.appendChild(d); conversa.scrollTop = conversa.scrollHeight; return d;
+  }
+  function info(t) { const d = document.createElement("div"); d.className = "info"; d.textContent = t; conversa.appendChild(d); conversa.scrollTop = conversa.scrollHeight; return d; }
+
+  async function falar(texto, botao) {
+    if (!perfil) return mostrarPerfil();
+    bolha("eu", texto);
+    const espera = info("escolhendo…");
+    try {
+      const r = await fetch(BASE + "/simulador", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ whatsapp: perfil.whatsapp, texto, botao }) });
+      const d = await r.json();
+      espera.remove();
+      if (!r.ok) return info(d.erro || "Algo deu errado.");
+      for (const m of d.respostas || []) {
+        const b = bolha("bot", m.texto);
+        const opcoes = m.botoes || m.itens || [];
+        if (opcoes.length) {
+          const caixa = document.createElement("div"); caixa.className = "botoes";
+          for (const o of opcoes) { const bt = document.createElement("button"); bt.textContent = o.titulo; bt.onclick = () => falar(o.titulo, o.id); caixa.appendChild(bt); }
+          b.appendChild(caixa);
+        }
+      }
+      info(`${d.segundos?.toFixed?.(1) ?? "?"} s`);
+    } catch { espera.remove(); info("Sem conexão com o servidor."); }
+  }
+
+  function mostrarPerfil() { document.getElementById("perfil").style.display = "block"; }
+  document.getElementById("trocar").onclick = mostrarPerfil;
+  document.getElementById("criar").onclick = async () => {
+    const erro = document.getElementById("erro"); erro.textContent = "";
+    const id = Math.random().toString(36).slice(2, 8);
+    const zap = "1190000" + String(Math.floor(Math.random() * 10000)).padStart(4, "0");
+    const dados = {
+      nome: document.getElementById("p-nome").value.trim() || "Teste", email: `teste-${id}@teste.naoqueropensar.com.br`,
+      whatsapp: zap, cep: document.getElementById("p-cep").value.replace(/\D/g, ""), convite: "TESTE",
+      streamings: lista(document.getElementById("p-stream").value), comidas_gosta: lista(document.getElementById("p-gosta").value),
+      comidas_evita: lista(document.getElementById("p-evita").value), generos_filmes: lista(document.getElementById("p-filmes").value),
+      generos_series: [], consentimento: true, termos: true,
+    };
+    try {
+      const r = await fetch(BASE + "/cadastro", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(dados) });
+      const d = await r.json();
+      if (!r.ok) { erro.textContent = Object.values(d.erros || { x: "Não deu certo." }).join(" "); return; }
+      perfil = { whatsapp: "+55" + zap, nome: dados.nome };
+      try { localStorage.setItem("nqp_perfil_teste", JSON.stringify(perfil)); } catch {}
+      document.getElementById("perfil").style.display = "none";
+      info(`Perfil criado (CEP ${dados.cep}). Manda um pedido!`);
+    } catch { erro.textContent = "Sem conexão com o servidor."; }
+  };
+  document.getElementById("envio").onsubmit = e => { e.preventDefault(); const t = document.getElementById("texto"); if (t.value.trim()) { falar(t.value.trim()); t.value = ""; } };
+  if (!perfil) mostrarPerfil(); else info(`Perfil: ${perfil.nome}. Manda um pedido!`);
+</script>
+</body>
+</html>

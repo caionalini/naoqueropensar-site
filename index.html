@@ -132,7 +132,7 @@
   <div id="formulario">
     <p class="selo">Beta só por convite · 30 dias grátis</p>
     <h1>Uma coisa a menos pra <span class="riscado">pensar</span>.</h1>
-    <p class="lead">Você diz do que não quer pensar. A gente escolhe por você, no WhatsApp.</p>
+    <p class="lead">Você diz no que não quer pensar. A gente escolhe por você, no WhatsApp.</p>
 
     <ul class="temas" aria-label="Do que você pode deixar de pensar">
       <li><span class="ic" aria-hidden="true">🍽️</span><b>O que pedir</b><s>40 opções no app</s></li>
@@ -340,7 +340,7 @@
       document.getElementById("pronto-nome").textContent = dados.nome.split(" ")[0];
       if (resp.codigo_convite) {
         document.getElementById("codigo").textContent = resp.codigo_convite;
-        const msg = `Entrei no beta do Não Quero Pensar: você diz do que não quer pensar e ele escolhe por você no WhatsApp. Meu convite: https://naoqueropensar.com.br/?convite=${encodeURIComponent(resp.codigo_convite)}`;
+        const msg = `Entrei no beta do Não Quero Pensar: você diz no que não quer pensar e ele escolhe por você no WhatsApp. Meu convite: https://naoqueropensar.com.br/?convite=${encodeURIComponent(resp.codigo_convite)}`;
         document.getElementById("compartilhar").href = "https://wa.me/?text=" + encodeURIComponent(msg);
         document.getElementById("pronto-convite").hidden = false;
       }
