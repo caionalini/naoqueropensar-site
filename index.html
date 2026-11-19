@@ -295,7 +295,14 @@
     e.target.value = d.length > 5 ? `${d.slice(0, 5)}-${d.slice(5)}` : d;
   });
 
-  function erro(campo, msg) { document.querySelector(`[data-erro="${campo}"]`).textContent = msg; }
+  function erro(campo, msg) {
+    const el = document.querySelector(`[data-erro="${campo}"]`);
+    el.textContent = msg;
+    if (/lista de espera/.test(msg)) {   // vagas acabaram: leva direto para a lista
+      const a = document.createElement("a"); a.href = "lista.html?de=convite_esgotado"; a.textContent = " Entrar na lista de espera →";
+      el.append(a);
+    }
+  }
 
   // Endereço do cadastro (ambiente de teste até o lançamento)
   const API = "https://xvkxxdaqvkbctfznatoo.supabase.co/functions/v1/cadastro";
