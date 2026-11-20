@@ -4,7 +4,8 @@
 (async () => {
   const nome = new URLSearchParams(location.search).get("img") || "teaser-01.png";
   const b = await (await fetch(nome + "?v=" + Date.now())).blob();
-  if (window.opener) window.opener.postMessage({ tipo: "nqp_imagem", nome, blob: b }, "https://business.facebook.com");
-  document.body.textContent = window.opener ? "enviado " + b.size : "sem opener";
+  const alvo = window.opener || (window.parent !== window ? window.parent : null);
+  if (alvo) alvo.postMessage({ tipo: "nqp_imagem", nome, blob: b }, "https://business.facebook.com");
+  document.body.textContent = alvo ? "enviado " + b.size : "sem opener";
 })();
 </script>
