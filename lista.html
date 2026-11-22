@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="icon" href="favicon-32.png" sizes="32x32"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lista de espera · Não Quero Pensar</title>
 <meta name="description" content="Entre na lista de espera do Beta do Não Quero Pensar: a gente escolhe comida, filme, série ou programa por você, no WhatsApp.">
-<meta property="og:title" content="Lista de espera · Não Quero Pensar"><meta property="og:description" content="Uma coisa a menos pra pensar. Entre na próxima leva do Beta.">
+<meta property="og:title" content="Lista de espera · Não Quero Pensar"><meta property="og:description" content="Uma coisa a menos pra pensar. Entre na lista de espera.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet"><style>
 :root{--creme:#F7F1E8;--pessego:#F1E2D0;--tinta:#3A2E28;--laranja:#D2603A;--tomate:#A8472A;--suave:#665850}
 *{box-sizing:border-box}body{margin:0;background:var(--creme);color:var(--tinta);font:16px/1.6 Inter,system-ui,sans-serif}
@@ -20,11 +20,11 @@ button[disabled]{opacity:.6}.armadilha{position:absolute;left:-5000px}
 footer{margin-top:40px;font-size:.85rem;color:var(--suave)}
 </style></head><body><main>
 <a href="index.html"><img src="logo.svg" alt="Não Quero Pensar" style="height:48px"></a>
-<h1>Entre na próxima leva do Beta</h1>
-<p class="lead">Você diz no WhatsApp no que não quer pensar (o jantar, o filme, o programa do sábado) e recebe uma escolha só, do seu gosto. O Beta é por convite, em São Paulo.</p>
+<h1>Entre na lista de espera</h1>
+<p class="lead">Você diz no WhatsApp no que não quer pensar (o jantar, o filme, o programa do sábado) e recebe uma escolha só, feita sob medida pra você. Já estamos no ar, em fase beta, com convidados em São Paulo.</p>
 <ol class="passos">
   <li>1. Deixe seu nome e WhatsApp aqui.</li>
-  <li>2. Quando abrir a próxima leva, você recebe o convite no WhatsApp.</li>
+  <li>2. Você recebe o convite no WhatsApp para começar a usar.</li>
   <li>3. Quem segue <a href="https://www.instagram.com/usenaoqueropensar/">@usenaoqueropensar</a> fica sabendo primeiro.</li>
 </ol>
 <form id="form" novalidate>
@@ -32,12 +32,12 @@ footer{margin-top:40px;font-size:.85rem;color:var(--suave)}
   <label>WhatsApp <span class="opc">com DDD</span><input type="tel" name="whatsapp" autocomplete="tel-national" inputmode="tel" placeholder="(11) 91234-5678" required><span class="erro" data-erro="whatsapp"></span></label>
   <label>Bairro <span class="opc">(opcional)</span><input type="text" name="bairro" maxlength="80" placeholder="Ex.: Pinheiros"></label>
   <input class="armadilha" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
-  <label class="check"><input type="checkbox" name="consentimento"><span>Aceito receber no WhatsApp o aviso quando abrir a próxima leva. Veja a <a href="privacidade.html">política de privacidade</a>.</span></label>
+  <label class="check"><input type="checkbox" name="consentimento"><span>Aceito receber no WhatsApp o convite para começar a usar. Veja a <a href="privacidade.html">política de privacidade</a>.</span></label>
   <span class="erro" data-erro="consentimento"></span>
   <span class="erro" data-erro="geral"></span>
   <button type="submit">Quero entrar</button>
 </form>
-<div class="pronto" id="pronto" hidden><h2>Você está na lista!</h2><p>Quando abrir a próxima leva, o convite chega no seu WhatsApp. Enquanto isso, segue a gente no <a href="https://www.instagram.com/usenaoqueropensar/">Instagram</a>.</p></div>
+<div class="pronto" id="pronto" hidden><h2>Você está na lista!</h2><p>Seu convite chega no WhatsApp para você começar. Enquanto isso, segue a gente no <a href="https://www.instagram.com/usenaoqueropensar/">Instagram</a>.</p></div>
 <footer>Não Quero Pensar · C SOUSA NALINI PORTAIS DE CONTEUDO NA INTERNET LTDA · CNPJ 70.205.179/0001-07 · <a href="privacidade.html">Privacidade</a> · <a href="termos.html">Termos</a> · Fale com a gente: <a href="mailto:contato@naoqueropensar.com">contato@naoqueropensar.com</a></footer>
 </main><script>
 const API = "https://xvkxxdaqvkbctfznatoo.supabase.co/functions/v1/lista-espera";
