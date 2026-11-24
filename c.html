@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Convidar alguém · Não Quero Pensar</title>
+<style>body{margin:0;background:#F7F1E8;color:#3A2E28;font:16px/1.6 Inter,system-ui,sans-serif}main{max-width:480px;margin:0 auto;padding:40px 20px;text-align:center}a.b{display:inline-block;background:#A8472A;color:#fff;border-radius:999px;padding:14px 22px;text-decoration:none;font-weight:600}</style></head><body><main>
+<img src="logo.svg" alt="Não Quero Pensar" style="height:48px">
+<p>Abrindo o WhatsApp pra você mandar o convite…</p>
+<p><a class="b" id="ir" href="https://naoqueropensar.com.br/">Mandar o convite no WhatsApp</a></p>
+</main><script>
+// Link do botão "Convidar alguém" do WhatsApp: c.html?c=CODIGO abre o WhatsApp com o convite pronto
+const c = (new URLSearchParams(location.search).get("c") || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase().slice(0, 12);
+const msg = c
+  ? `Tô usando o Não Quero Pensar: você diz no WhatsApp no que não quer pensar e recebe a escolha pronta. Com o meu convite você entra sem passar pela lista de espera: https://naoqueropensar.com.br/?convite=${c}`
+  : "Conhece o Não Quero Pensar? Você diz no WhatsApp no que não quer pensar e recebe a escolha pronta: https://naoqueropensar.com.br/";
+const url = "https://wa.me/?text=" + encodeURIComponent(msg);
+document.getElementById("ir").href = url;
+location.replace(url);
+</script></body></html>
