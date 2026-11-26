@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="icon" href="favicon-32.png" sizes="32x32"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Entrar na lista pelo WhatsApp · Não Quero Pensar</title>
+<meta name="description" content="Entre na lista de espera do Não Quero Pensar direto pelo WhatsApp: é só mandar a mensagem que já vem pronta.">
+<meta property="og:title" content="Entre na lista de espera · Não Quero Pensar"><meta property="og:description" content="Uma coisa a menos pra pensar. Manda a mensagem pronta no WhatsApp e pronto.">
+<meta name="robots" content="noindex">
+<style>
+body{margin:0;background:#F7F1E8;color:#3A2E28;font:16px/1.6 Inter,system-ui,sans-serif;display:grid;place-items:center;min-height:100vh}
+main{max-width:420px;padding:24px;text-align:center}h1{font-size:1.6rem;line-height:1.2;margin:0 0 .4em}
+a.zap{display:inline-block;margin-top:16px;font-weight:600;background:#A8472A;color:#fff;border-radius:999px;padding:14px 22px;text-decoration:none}
+p{color:#665850}
+</style></head><body><main>
+<h1>Abrindo o WhatsApp…</h1>
+<p>A mensagem já vem pronta: é só enviar e você entra na lista de espera do Não Quero Pensar.</p>
+<a class="zap" id="zap" href="https://wa.me/5511992690310?text=Oi!%20Quero%20entrar%20na%20lista%20de%20espera%20do%20N%C3%A3o%20Quero%20Pensar.">Abrir o WhatsApp</a>
+</main>
+<script>
+// Leva direto para o WhatsApp do Não Quero Pensar com a mensagem pronta; o "(vim pelo <canal>)" vem do ?de= e mede a origem
+const de = (new URLSearchParams(location.search).get("de") || "").toLowerCase();
+const a = document.getElementById("zap");
+if (/^[a-z0-9_]{1,20}$/.test(de)) a.href += encodeURIComponent(` (vim pelo ${de})`);
+setTimeout(() => { location.href = a.href; }, 300);
+</script>
+</body></html>
