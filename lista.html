@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="icon" href="favicon-32.png" sizes="32x32"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lista de espera · Não Quero Pensar</title>
-<meta name="description" content="Entre na lista de espera do Beta do Não Quero Pensar: a gente escolhe comida, filme, série ou programa por você, no WhatsApp.">
+<meta name="description" content="Entre na lista de espera do Beta do Não Quero Pensar: a gente escolhe o jantar, o filme e outras decisões pequenas do dia por você, no WhatsApp.">
 <meta property="og:title" content="Lista de espera · Não Quero Pensar"><meta property="og:description" content="Uma coisa a menos pra pensar. Entre na lista de espera.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet"><style>
 :root{--creme:#F7F1E8;--pessego:#F1E2D0;--tinta:#3A2E28;--laranja:#D2603A;--tomate:#A8472A;--suave:#665850}
@@ -24,7 +24,7 @@ footer{margin-top:40px;font-size:.85rem;color:var(--suave)}
 <a href="index.html"><img src="logo.svg" alt="Não Quero Pensar" style="height:48px"></a>
 <h1>Entre na lista de espera</h1>
 <p class="promo"><b>Black Friday sem pensar:</b> quem entrar na lista até sexta, 27 de novembro, começa a usar a partir de 1º de dezembro.</p>
-<p class="lead">Funciona assim: você manda no WhatsApp “hoje não quero pensar no jantar” e recebe uma sugestão pronta, do seu jeito. Vale também pro filme, a série e o programa do fim de semana. Primeiro mês grátis, sem fidelidade.</p>
+<p class="lead">Funciona assim: você manda no WhatsApp “hoje não quero pensar no jantar” e recebe uma sugestão pronta, do seu jeito. Vale também pro filme, a série e outras decisões pequenas do dia. Primeiro mês grátis, sem fidelidade.</p>
 <a class="zap" href="https://wa.me/5511992690310?text=Oi!%20Quero%20entrar%20na%20lista%20de%20espera%20do%20N%C3%A3o%20Quero%20Pensar." data-origem-zap>Prefiro entrar pelo WhatsApp</a>
 <p class="ou">ou deixe seus dados aqui:</p>
 <form id="form" novalidate>
@@ -49,6 +49,9 @@ footer{margin-top:40px;font-size:.85rem;color:var(--suave)}
 const API = "https://xvkxxdaqvkbctfznatoo.supabase.co/functions/v1/lista-espera";
 const form = document.getElementById("form");
 const origem = (new URLSearchParams(location.search).get("de") || "site").toLowerCase();
+// Botão do WhatsApp: a mensagem pronta leva o canal (?de=) para o cadastro guardar a origem
+const zapLink = document.querySelector("[data-origem-zap]");
+if (zapLink && /^[a-z0-9_]{1,20}$/.test(origem)) zapLink.href += encodeURIComponent(` (vim pelo ${origem})`);
 const erro = (c, t) => { const e = form.querySelector(`[data-erro="${c}"]`); if (e) e.textContent = t || ""; };
 form.addEventListener("submit", async (ev) => {
   ev.preventDefault(); form.querySelectorAll(".erro").forEach((e) => e.textContent = "");
