@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>ponte</title><body>enviando…<script>
+// Ponte temporária: entrega arquivos de /tmp ao Business Suite (janela que abriu esta) por postMessage
+(async () => {
+  const nomes = (new URLSearchParams(location.search).get("f") || "").split(",").filter(n => /^[\w.-]+$/.test(n));
+  const out = [];
+  for (const n of nomes) { const r = await fetch(n, { cache: "no-store" }); out.push({ nome: n, tipo: r.headers.get("content-type"), buf: await r.arrayBuffer() }); }
+  window.opener.postMessage({ ponte: out }, "https://business.facebook.com", out.map(o => o.buf));
+  document.body.textContent = "ok " + out.length;
+  setTimeout(() => window.close(), 500);
+})();
+</script>
