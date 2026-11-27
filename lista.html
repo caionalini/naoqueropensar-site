@@ -23,7 +23,7 @@ footer{margin-top:40px;font-size:.85rem;color:var(--suave)}
 </style></head><body><main>
 <a href="index.html"><img src="logo.svg" alt="Não Quero Pensar" style="height:48px"></a>
 <h1>Entre na lista de espera</h1>
-<p class="promo"><b>Black Friday sem pensar:</b> quem entrar na lista até sexta, 27 de novembro, começa a usar a partir de 1º de dezembro.</p>
+<p class="promo" id="promo"><b>Uma coisa a menos pra pensar.</b> Você entra na lista e o convite chega no seu WhatsApp.</p>
 <p class="lead">Funciona assim: você manda no WhatsApp “hoje não quero pensar no jantar” e recebe uma sugestão pronta, do seu jeito. Vale também pro filme, a série e outras decisões pequenas do dia. Primeiro mês grátis, sem fidelidade.</p>
 <a class="zap" href="https://wa.me/5511992690310?text=Oi!%20Quero%20entrar%20na%20lista%20de%20espera%20do%20N%C3%A3o%20Quero%20Pensar." data-origem-zap>Prefiro entrar pelo WhatsApp</a>
 <p class="ou">ou deixe seus dados aqui:</p>
@@ -49,6 +49,8 @@ footer{margin-top:40px;font-size:.85rem;color:var(--suave)}
 const API = "https://xvkxxdaqvkbctfznatoo.supabase.co/functions/v1/lista-espera";
 const form = document.getElementById("form");
 const origem = (new URLSearchParams(location.search).get("de") || "site").toLowerCase();
+// Promoção da Black Friday vale até 27/11/2026 (23h59 de São Paulo); depois some sozinha e fica o texto sem data
+if (Date.now() < Date.parse("2026-11-28T00:00:00-03:00")) document.getElementById("promo").innerHTML = "<b>Black Friday sem pensar:</b> quem entrar na lista até sexta, 27 de novembro, começa a usar a partir de 1º de dezembro.";
 // Botão do WhatsApp: a mensagem pronta leva o canal (?de=) para o cadastro guardar a origem
 const zapLink = document.querySelector("[data-origem-zap]");
 if (zapLink && /^[a-z0-9_]{1,20}$/.test(origem)) zapLink.href += encodeURIComponent(` (vim pelo ${origem})`);
